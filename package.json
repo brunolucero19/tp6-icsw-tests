@@ -11,7 +11,11 @@
     "test:integration": "jest --testPathPattern=integration",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "test:all": "npm run test:unit && npm run test:integration && npm run cypress:run",
+    "test:quick": "npm run test:unit && npm run test:integration",
+    "setup:verify": "npm run test:unit && echo ✅ Setup verificado correctamente!",
+    "help": "echo 🚀 Comandos disponibles: && echo   npm run setup:verify  - Verificar instalacion && echo   npm run test:unit     - Tests unitarios && echo   npm run test:integration - Tests de integracion && echo   npm run cypress:open  - Abrir Cypress (RECOMENDADO) && echo   npm run cypress:run   - Ejecutar E2E en terminal && echo   npm run test:all      - Ejecutar TODOS los tests"
   },
   "keywords": [
     "testing",
@@ -47,6 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "axios": "^1.12.2",
+    "cypress": "^15.3.0",
     "eslint": "^8.56.0",
     "jest": "^29.7.0",
     "supertest": "^6.3.4",

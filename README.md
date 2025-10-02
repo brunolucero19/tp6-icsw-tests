@@ -1,225 +1,408 @@
-# Contact Manager - Backend
+# 🧪 TP6 - Tests Automatizados Contact List
 
-API REST para gestión de contactos personales con autenticación JWT.
+## Ingeniería y Calidad de Software - UTN
 
-## Características
+Este proyecto implementa una **estrategia completa de testing automatizado** para la aplicación Contact List, cubriendo tests unitarios, de integración y end-to-end (E2E).
 
-- 🔐 Autenticación JWT con verificación de email
-- 📝 CRUD completo de contactos
-- 🔒 Validaciones de seguridad (hash de contraseñas, validación de datos)
-- 📧 Servicio de envío de emails para verificación
-- 🧪 Tests unitarios comprehensivos con Jest
-- 📊 Cobertura de código
-- 🚀 API REST documentada
+### 🎯 **Aplicación Objetivo**
 
-## Tecnologías
+- **URL:** https://thinking-tester-contact-list.herokuapp.com/
+- **Funcionalidad:** Sistema de gestión de contactos con autenticación
 
-- **Node.js** + **Express** - Servidor web
-- **TypeScript** - Tipado estático
-- **bcrypt** - Hash de contraseñas
-- **JWT** - Autenticación
-- **nodemailer** - Envío de emails
-- **express-validator** - Validaciones
-- **Jest** + **Supertest** - Testing
-- **ESLint** - Linting
+### 👥 **Integrantes del Grupo**
 
-## Instalación
+1. [Nombre] - Test E2E: Registro de Usuario
+2. [Nombre] - Test E2E: Login de Usuario
+3. [Nombre] - Test E2E: Logout de Usuario
+4. [Nombre] - Test E2E: Crear Contacto
+5. [Nombre] - Test E2E: Editar Contacto
+6. [Nombre] - Test E2E: Eliminar Contacto
+7. [Nombre] - Test E2E: Navegación y Validaciones
+
+---
+
+## 📋 **Requisitos del Sistema**
+
+### Prerrequisitos
+
+- **Node.js** v18+ (descargar desde [nodejs.org](https://nodejs.org/))
+- **Git** (para clonar el repositorio)
+- **Navegador moderno** (Chrome, Firefox, Edge)
+
+### Verificar instalación
 
 ```bash
-# Instalar dependencias
+node --version    # Debe mostrar v18.x.x o superior
+npm --version     # Debe mostrar 8.x.x o superior
+git --version     # Cualquier versión reciente
+```
+
+---
+
+## 🚀 **Setup del Proyecto**
+
+### 1. **Clonar el Repositorio**
+
+```bash
+git clone https://github.com/brunolucero19/tp6-icsw-tests.git
+cd tp6-icsw-tests
+```
+
+### 2. **Instalar Dependencias**
+
+```bash
 npm install
-
-# Copiar archivo de configuración
-cp .env.example .env
-
-# Editar variables de entorno
-# Configurar EMAIL_USER y EMAIL_PASS para el servicio de emails
 ```
 
-## Scripts Disponibles
+Este comando instalará todas las dependencias necesarias:
+
+- Jest (testing framework)
+- Cypress (E2E testing)
+- TypeScript (tipado)
+- Axios (HTTP requests)
+- Y todas las dependencias adicionales
+
+### 3. **Verificar Instalación**
 
 ```bash
-# Desarrollo con recarga automática
-npm run dev
+npm run test:unit
+```
 
-# Compilar TypeScript
-npm run build
+Si todo está correcto, deberías ver algo como:
 
-# Ejecutar en producción
-npm start
+```
+Test Suites: 7 passed, 7 total
+Tests:       169 passed, 169 total
+```
 
-# Ejecutar tests
-npm test
+---
 
-# Tests en modo watch
+## 🧪 **Ejecutar Tests**
+
+### **Tests Unitarios** (Recomendado empezar aquí)
+
+```bash
+# Ejecutar todos los tests unitarios
+npm run test:unit
+
+# Ejecutar con coverage
+npm run test:coverage
+
+# Ejecutar en modo watch (re-ejecuta al cambiar archivos)
 npm run test:watch
-
-# Cobertura de tests
-npm run test:coverage
-
-# Linting
-npm run lint
-npm run lint:fix
 ```
 
-## Variables de Entorno
-
-Crear archivo `.env` basado en `.env.example`:
-
-```env
-NODE_ENV=development
-PORT=3001
-JWT_SECRET=tu_jwt_secret_super_seguro
-EMAIL_SERVICE=gmail
-EMAIL_USER=tu_email@gmail.com
-EMAIL_PASS=tu_password_de_aplicacion
-BASE_URL=http://localhost:3000
-```
-
-### Configuración de Email
-
-Para usar Gmail como servicio de email:
-
-1. Activar autenticación de 2 factores en tu cuenta Gmail
-2. Generar una contraseña de aplicación específica
-3. Usar esa contraseña en `EMAIL_PASS`
-
-## API Endpoints
-
-### Autenticación
-
-```
-POST   /api/auth/register        # Registro de usuario
-POST   /api/auth/login           # Inicio de sesión
-GET    /api/auth/verify-email/:token  # Verificación de email
-GET    /api/auth/profile         # Perfil del usuario (requiere auth)
-```
-
-### Contactos (requieren autenticación)
-
-```
-GET    /api/contacts             # Obtener todos los contactos
-GET    /api/contacts/:id         # Obtener contacto específico
-POST   /api/contacts             # Crear nuevo contacto
-PUT    /api/contacts/:id         # Actualizar contacto
-DELETE /api/contacts/:id         # Eliminar contacto
-```
-
-### Otros
-
-```
-GET    /api/health               # Estado del servidor
-GET    /                         # Información de la API
-```
-
-## Estructura del Proyecto
-
-```
-src/
-├── controllers/     # Controladores de las rutas
-├── middleware/      # Middleware personalizado
-├── models/          # Modelos de datos (en memoria)
-├── routes/          # Definición de rutas
-├── services/        # Servicios (email, etc.)
-├── types/           # Tipos TypeScript
-├── utils/           # Utilidades
-├── __tests__/       # Tests unitarios
-└── index.ts         # Punto de entrada
-```
-
-## Testing
-
-### Ejecutar Tests
+### **Tests de Integración**
 
 ```bash
-# Todos los tests
+# Ejecutar tests contra API real
+npm run test:integration
+```
+
+⚠️ **Nota:** Estos tests hacen llamadas HTTP reales y pueden tardar ~30 segundos.
+
+### **Tests E2E con Cypress**
+
+#### Opción 1: Modo Interactivo (Recomendado para desarrollo)
+
+```bash
+npm run cypress:open
+```
+
+- Se abre interfaz gráfica de Cypress
+- Puedes seleccionar tests individuales
+- Ver ejecución en tiempo real
+- Ideal para debugging
+
+#### Opción 2: Modo Headless (Para CI/CD)
+
+```bash
+npm run cypress:run
+```
+
+- Ejecuta todos los tests sin interfaz
+- Genera videos y screenshots automáticamente
+- Más rápido para ejecución completa
+
+### **Ejecutar TODOS los Tests**
+
+```bash
 npm test
-
-# Tests específicos
-npm test -- auth.test.ts
-
-# Cobertura
-npm run test:coverage
 ```
 
-### Estructura de Tests
+Ejecuta unitarios + integración + E2E en secuencia.
 
-- `__tests__/utils/` - Tests de utilidades
-- `__tests__/models/` - Tests de modelos
-- `__tests__/controllers/` - Tests de controladores (integración)
-- `__tests__/setup.ts` - Configuración global de tests
+---
 
-## Casos de Uso Cubiertos
+## 📁 **Estructura del Proyecto**
 
-### Registro de Usuario
+```
+tp6-icsw-tests/
+├── 📂 src/
+│   ├── 📂 __tests__/
+│   │   ├── 📂 unit/                    # Tests unitarios (169 tests)
+│   │   │   ├── ValidationUtils.test.ts
+│   │   │   ├── FormatUtils.test.ts
+│   │   │   ├── ContactListApiService.test.ts
+│   │   │   ├── AuthenticationFlow.test.ts
+│   │   │   ├── UserRegistrationValidation.test.ts
+│   │   │   ├── UserProfileManagement.test.ts
+│   │   │   └── ContactManagement.test.ts
+│   │   └── 📂 integration/             # Tests de integración (29 tests)
+│   │       ├── UserRegistration.integration.test.ts
+│   │       ├── UserLogin.integration.test.ts
+│   │       ├── UserLogout.integration.test.ts
+│   │       └── CompleteFlows.integration.test.ts
+│   ├── 📂 services/
+│   │   └── ContactListApiService.ts    # Cliente API principal
+│   ├── 📂 utils/
+│   │   ├── ValidationUtils.ts          # Utilidades de validación
+│   │   └── FormatUtils.ts             # Utilidades de formateo
+│   └── 📂 types/
+│       └── api.types.ts               # Tipos TypeScript
+├── 📂 cypress/
+│   ├── 📂 e2e/                        # Tests E2E (36 tests)
+│   │   ├── 01-user-registration.cy.ts  # Registro usuario
+│   │   ├── 02-user-login.cy.ts         # Login usuario
+│   │   ├── 03-user-logout.cy.ts        # Logout usuario
+│   │   ├── 04-create-contact.cy.ts     # Crear contacto
+│   │   ├── 05-edit-contact.cy.ts       # Editar contacto
+│   │   ├── 06-delete-contact.cy.ts     # Eliminar contacto
+│   │   └── 07-navigation-validation.cy.ts # Navegación
+│   ├── 📂 support/
+│   │   ├── commands.ts                 # Comandos personalizados
+│   │   └── e2e.ts                     # Configuración global
+│   └── 📂 fixtures/
+│       └── testData.json              # Datos de prueba
+├── 📂 coverage/                        # Reportes de cobertura
+├── 📄 cypress.config.ts               # Configuración Cypress
+├── 📄 jest.config.js                  # Configuración Jest
+├── 📄 package.json                    # Dependencias y scripts
+└── 📄 INFORME_FINAL_TP6.md           # Informe completo
+```
 
-- ✅ Validación de email y contraseña
-- ✅ Confirmación de contraseña
-- ✅ Hash seguro de contraseñas
-- ✅ Envío de email de verificación
-- ✅ Prevención de emails duplicados
+---
 
-### Inicio de Sesión
+## 🎯 **Tests por Categoria**
 
-- ✅ Validación de credenciales
-- ✅ Verificación de email confirmado
-- ✅ Generación de JWT
-- ✅ Manejo de errores
+### **Item 3: Tests Unitarios** ✅
 
-### Gestión de Contactos
+- **169 tests** con **100% cobertura**
+- Valida lógica de negocio aislada
+- Mocks para dependencias externas
+- Ejecución rápida (~9 segundos)
 
-- ✅ CRUD completo con autorización
-- ✅ Validación de datos de entrada
-- ✅ Aislamiento por usuario
-- ✅ Campos opcionales
+### **Item 4: Tests de Integración** ✅
 
-### Seguridad
+- **29 tests** contra **API real**
+- Valida flujos completos end-to-end
+- Registro → Login → Logout
+- Gestión completa de contactos
 
-- ✅ JWT con expiración
-- ✅ Middleware de autenticación
-- ✅ Validación y sanitización de datos
-- ✅ Prevención de ataques básicos
+### **Item 5: Tests E2E Cypress** ✅
 
-## Desarrollo
+- **7 tests automatizados** (uno por integrante)
+- **36 casos de prueba** total
+- Interfaz de usuario real
+- Videos y screenshots automáticos
 
-### Agregar Nueva Funcionalidad
+---
 
-1. Crear tipos en `types/`
-2. Implementar modelo en `models/`
-3. Crear controlador en `controllers/`
-4. Definir rutas en `routes/`
-5. Agregar validaciones en `middleware/`
-6. Escribir tests en `__tests__/`
+## 🔧 **Scripts Disponibles**
 
-### Convenciones
+| Script           | Comando                    | Descripción                  |
+| ---------------- | -------------------------- | ---------------------------- |
+| Test unitarios   | `npm run test:unit`        | Solo tests unitarios         |
+| Test integración | `npm run test:integration` | Tests contra API real        |
+| Coverage         | `npm run test:coverage`    | Tests + reporte cobertura    |
+| Watch mode       | `npm run test:watch`       | Re-ejecuta al cambiar código |
+| Cypress UI       | `npm run cypress:open`     | Interfaz gráfica Cypress     |
+| Cypress headless | `npm run cypress:run`      | Cypress en terminal          |
+| E2E              | `npm run test:e2e`         | Alias para cypress:run       |
+| Todos            | `npm test`                 | Todos los tests              |
 
-- Usar TypeScript estricto
-- Validar todas las entradas
-- Manejar errores correctamente
-- Escribir tests para nueva funcionalidad
-- Documentar APIs con comentarios
+---
 
-## Producción
+## 📊 **Resultados Esperados**
+
+### **Tests Unitarios**
+
+```
+Test Suites: 7 passed, 7 total
+Tests:       169 passed, 169 total
+Coverage:    100% (Statements, Branches, Functions, Lines)
+Time:        ~9 seconds
+```
+
+### **Tests de Integración**
+
+```
+Test Suites: 4 passed, 4 total
+Tests:       29 passed, 29 total
+Time:        ~32 seconds
+```
+
+### **Tests E2E Cypress**
+
+```
+Specs:       7 archivos
+Tests:       36 implementados
+Passing:     19+ tests (mejorando continuamente)
+Time:        ~8 minutos
+```
+
+---
+
+## 🐛 **Troubleshooting**
+
+### Problemas Comunes
+
+#### 1. **Error al instalar dependencias**
 
 ```bash
-# Compilar
-npm run build
-
-# Configurar variables de entorno de producción
-export NODE_ENV=production
-export JWT_SECRET=secret_muy_seguro_production
-export EMAIL_USER=email_production
-export EMAIL_PASS=password_production
-
-# Ejecutar
-npm start
+# Limpiar cache y reinstalar
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
 ```
 
-## Contribuir
+#### 2. **Tests de integración fallan**
 
-1. Fork del proyecto
-2. Crear rama feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Escribir tests
-4. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
-5. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-6. Crear Pull Request
+- Verificar conexión a internet
+- La API externa puede estar temporalmente inactiva
+- Esperar y reintentar
+
+#### 3. **Cypress no abre**
+
+```bash
+# Verificar instalación de Cypress
+npx cypress verify
+
+# Reinstalar Cypress si es necesario
+npm uninstall cypress
+npm install cypress --save-dev
+```
+
+#### 4. **Tests E2E fallan**
+
+- La aplicación web puede haber cambiado
+- Verificar que la URL base funcione en navegador
+- Algunos tests pueden necesitar ajuste de selectores
+
+#### 5. **Errores de TypeScript**
+
+```bash
+# Verificar configuración TypeScript
+npx tsc --noEmit
+
+# Reinstalar tipos si es necesario
+npm install --save-dev @types/node @types/jest
+```
+
+---
+
+## 🚀 **Para Desarrolladores**
+
+### **Agregar Nuevos Tests**
+
+#### Test Unitario
+
+1. Crear archivo en `src/__tests__/unit/`
+2. Seguir convención `NombreDelModulo.test.ts`
+3. Usar Jest y mocks
+
+#### Test de Integración
+
+1. Crear archivo en `src/__tests__/integration/`
+2. Usar axios para HTTP real
+3. Generar datos únicos
+
+#### Test E2E
+
+1. Crear archivo en `cypress/e2e/`
+2. Seguir convención `##-descripcion.cy.ts`
+3. Usar comandos personalizados de `cypress/support/commands.ts`
+
+### **Comandos de Desarrollo**
+
+```bash
+# Ejecutar test específico
+npm test -- ValidationUtils.test.ts
+
+# Debug con breakpoints
+npm run test:unit -- --inspect-brk
+
+# Coverage HTML detallado
+npm run test:coverage && open coverage/lcov-report/index.html
+```
+
+---
+
+## 📈 **Métricas del Proyecto**
+
+| Métrica       | Unitarios | Integración | E2E | **Total** |
+| ------------- | --------- | ----------- | --- | --------- |
+| **Tests**     | 169       | 29          | 36  | **234**   |
+| **Suites**    | 7         | 4           | 7   | **18**    |
+| **Tiempo**    | 9s        | 32s         | 8m  | **9m**    |
+| **Cobertura** | 100%      | N/A         | N/A | **100%**  |
+
+---
+
+## 🎓 **Tecnologías Utilizadas**
+
+### **Testing Frameworks**
+
+- **Jest** - Tests unitarios e integración
+- **Cypress** - Tests E2E de interfaz
+
+### **Lenguajes y Tools**
+
+- **TypeScript** - Tipado fuerte
+- **Node.js** - Runtime JavaScript
+- **Axios** - Cliente HTTP
+- **Git** - Control de versiones
+
+### **APIs y Servicios**
+
+- **Contact List API** - Aplicación objetivo
+- **Heroku** - Hosting de la aplicación
+
+---
+
+## 📞 **Soporte**
+
+### **Para el Equipo**
+
+Si tienes problemas:
+
+1. **Verifica prerrequisitos** (Node.js, npm)
+2. **Consulta troubleshooting** arriba
+3. **Revisa issues** en GitHub
+4. **Contacta al equipo** en el grupo
+
+### **Recursos Útiles**
+
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
+- [Cypress Documentation](https://docs.cypress.io/)
+- [Contact List App](https://thinking-tester-contact-list.herokuapp.com/)
+
+---
+
+## ✅ **Checklist para Nuevos Desarrolladores**
+
+- [ ] Node.js v18+ instalado
+- [ ] Repositorio clonado
+- [ ] `npm install` ejecutado exitosamente
+- [ ] `npm run test:unit` pasa todos los tests
+- [ ] `npm run test:integration` funciona
+- [ ] `npm run cypress:open` abre interfaz
+- [ ] Leído `INFORME_FINAL_TP6.md`
+
+---
+
+**🎯 ¡Listo para empezar!** Una vez completado el checklist, tendrás todo funcionando y podrás contribuir al proyecto.
+
+---
+
+_Proyecto desarrollado para la materia **Ingeniería y Calidad de Software** - UTN - Octubre 2025_

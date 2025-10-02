@@ -117,3 +117,7 @@ dist
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+#Cypress
+cypress/videos
+cypress/screenshots

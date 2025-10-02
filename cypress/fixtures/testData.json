@@ -1,0 +1,21 @@
+{
+  "testUser": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "password": "myPassword"
+  },
+  "testContact": {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "birthdate": "1990-01-01",
+    "email": "jane.smith@fake.com",
+    "phone": "8005555555",
+    "street1": "1 Main St.",
+    "street2": "Apartment A",
+    "city": "Anytown",
+    "stateProvince": "KS",
+    "postalCode": "12345",
+    "country": "USA"
+  }
+}
