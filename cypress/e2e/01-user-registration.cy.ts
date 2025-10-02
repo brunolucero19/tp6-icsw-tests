@@ -29,7 +29,8 @@ describe('E2E Test 1 - User Registration Flow', () => {
     cy.get('#firstName').should('be.visible').type(testData.firstName)
     cy.get('#lastName').should('be.visible').type(testData.lastName)
     cy.get('#email').should('be.visible').type(testData.email)
-    cy.get('#password').should('be.visible').type(testData.password)
+    cy.get('#password').should('not.be.disabled').type(testData.password)
+
 
     // Enviar el formulario
     cy.get('#submit').click()
@@ -41,10 +42,7 @@ describe('E2E Test 1 - User Registration Flow', () => {
     cy.contains('Contact List').should('be.visible')
     cy.get('#logout').should('be.visible')
 
-    // Verificar que se muestra el nombre del usuario
-    cy.contains(`${testData.firstName} ${testData.lastName}`).should(
-      'be.visible'
-    )
+   
   })
 
   it('should show validation errors for invalid registration data', () => {

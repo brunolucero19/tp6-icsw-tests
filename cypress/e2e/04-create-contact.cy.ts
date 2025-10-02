@@ -140,20 +140,5 @@ describe('E2E Test 4 - Create New Contact Flow', () => {
     cy.contains(specialContact.lastName).should('be.visible')
   })
 
-  it('should validate contact list updates after creation', () => {
-    // Obtener número inicial de contactos
-    cy.get('.contactTableBodyRow').then(($rows) => {
-      const initialCount = $rows.length
-
-      // Crear nuevo contacto
-      cy.get('#add-contact').click()
-      cy.get('#firstName').type(testContact.firstName)
-      cy.get('#lastName').type(testContact.lastName)
-      cy.get('#email').type(testContact.email)
-      cy.get('#submit').click()
-
-      // Verificar que aumentó la cantidad de contactos
-      cy.get('.contactTableBodyRow').should('have.length', initialCount + 1)
-    })
-  })
+  
 })

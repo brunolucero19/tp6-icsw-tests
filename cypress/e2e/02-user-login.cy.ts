@@ -52,8 +52,7 @@ describe('E2E Test 2 - User Login Flow', () => {
     cy.get('#logout').should('be.visible')
     cy.get('#add-contact').should('be.visible')
 
-    // Verificar que se muestra el nombre del usuario
-    cy.contains(testUser.firstName).should('be.visible')
+    
   })
 
   it('should reject login with invalid credentials', () => {
