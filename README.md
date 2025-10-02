@@ -11,13 +11,13 @@ Este proyecto implementa una **estrategia completa de testing automatizado** par
 
 ### 👥 **Integrantes del Grupo**
 
-1. [Nombre] - Test E2E: Registro de Usuario
-2. [Nombre] - Test E2E: Login de Usuario
-3. [Nombre] - Test E2E: Logout de Usuario
-4. [Nombre] - Test E2E: Crear Contacto
-5. [Nombre] - Test E2E: Editar Contacto
-6. [Nombre] - Test E2E: Eliminar Contacto
-7. [Nombre] - Test E2E: Navegación y Validaciones
+1. Octavio Díaz - Test E2E: Registro de Usuario
+2. Vincenzo Dallape - Test E2E: Login de Usuario
+3. Emiliano Jordán - Test E2E: Logout de Usuario
+4. Matías Visedo - Test E2E: Crear Contacto
+5. Valentino Isgró - Test E2E: Editar Contacto
+6. Bruno Lucero - Test E2E: Eliminar Contacto
+7. Juan Pablo Costa - Test E2E: Navegación y Validaciones
 
 ---
 
